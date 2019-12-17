@@ -8,7 +8,7 @@ class ListNode:
         self.prev = prev
         self.next = next
 
-    """Wrap the given value in a ListNode and insert it
+    """Wraps the given value in a ListNode and insert it
     after this node. Note that this node could already
     have a next node it is point to."""
     def insert_after(self, value):
@@ -17,7 +17,7 @@ class ListNode:
         if current_next:
             current_next.prev = self.next
 
-    """Wrap the given value in a ListNode and insert it
+    """Wraps the given value in a ListNode and insert it
     before this node. Note that this node could already
     have a previous node it is point to."""
     def insert_before(self, value):
@@ -28,6 +28,7 @@ class ListNode:
 
     """Rearranges this ListNode's previous and next pointers
     accordingly, effectively deleting this ListNode."""
+    #removes its pointer
     def delete(self):
         if self.prev:
             self.prev.next = self.next
@@ -40,6 +41,7 @@ the list's head and tail nodes."""
 
 
 class DoublyLinkedList:
+    #not neccessary but it is useful
     def __init__(self, node=None):
         self.head = node
         self.tail = node
@@ -52,7 +54,17 @@ class DoublyLinkedList:
     as the new head of the list. Don't forget to handle 
     the old head node's previous pointer accordingly."""
     def add_to_head(self, value):
-        pass
+        new_node = ListNode(value, None, None)
+        self.length += 1 #increment length
+        # if the list is empty
+        if not self.head and not self.tail: 
+            self.head = new_node
+            self.tail = new_node
+        else: 
+            #prev and next are the pointers
+            new_node.next = self.head
+            self.head.prev = new_node
+            self.head = new_node
 
     """Removes the List's current head node, making the
     current head's next node the new head of the List.
@@ -84,6 +96,7 @@ class DoublyLinkedList:
 
     """Removes a node from the list and handles cases where
     the node was the head or the tail"""
+    #deletes^^
     def delete(self, node):
         pass
         
